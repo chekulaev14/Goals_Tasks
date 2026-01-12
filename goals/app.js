@@ -1,80 +1,53 @@
-// API base URL
-const API_BASE = '/.netlify/functions/goals-api';
+// Storage keys
+const STORAGE_KEYS = {
+    dreams: 'goals_app_dreams',
+    goals: 'goals_app_goals',
+    tasks: 'goals_app_tasks'
+};
 
-// Data
-let dreams = [];
-let goals = [];
-let tasks = [];
+// Initialize data from localStorage
+let dreams = JSON.parse(localStorage.getItem(STORAGE_KEYS.dreams)) || [];
+let goals = JSON.parse(localStorage.getItem(STORAGE_KEYS.goals)) || [];
+let tasks = JSON.parse(localStorage.getItem(STORAGE_KEYS.tasks)) || [];
 
 // Initialize on page load
-document.addEventListener('DOMContentLoaded', async function() {
-    await loadDataFromAPI();
+document.addEventListener('DOMContentLoaded', function() {
+    loadInitialData();
     renderAll();
 });
 
-// Load data from API
-async function loadDataFromAPI() {
-    try {
-        const [dreamsData, goalsData, tasksData] = await Promise.all([
-            fetch('/api/dreams').then(r => r.json()),
-            fetch('/api/goals').then(r => r.json()),
-            fetch('/api/tasks').then(r => r.json())
-        ]);
+// Load initial data if empty
+function loadInitialData() {
+    if (dreams.length === 0) {
+        dreams = [
+            { id: Date.now(), title: "Lexus LX 500d J310 в обвесе", cost: 25000000, description: "Премиум внедорожник Lexus LX 500d кузов J310 в обвесе", created_at: new Date().toISOString() },
+            { id: Date.now() + 1, title: "Квартира в Тольятти 3-4 комнатная", cost: 12000000, description: "3-4 комнатная квартира с 2 санузлами, 120-150м²", created_at: new Date().toISOString() },
+            { id: Date.now() + 2, title: "Дом в Ягодном у леса", cost: 50000000, description: "Построить дом по своему проекту у леса в Ягодном", created_at: new Date().toISOString() }
+        ];
+        saveDreams();
+    }
 
-        dreams = dreamsData.dreams || [];
-        goals = goalsData.goals || [];
-        tasks = tasksData.tasks || [];
-    } catch (error) {
-        console.error('Error loading data:', error);
+    if (goals.length === 0) {
+        goals = [
+            { id: Date.now() + 100, title: "Обустроить дачу", cost: 1000000, description: "Благоустройство дачи", status: "active", created_at: new Date().toISOString() },
+            { id: Date.now() + 101, title: "Выкупить Geely Preface из лизинга", cost: 1500000, description: "Полный выкуп автомобиля Geely Preface из лизинга", status: "active", created_at: new Date().toISOString() },
+            { id: Date.now() + 102, title: "Слетать на отдых всей семьей", cost: 1000000, description: "Семейный отпуск", status: "active", created_at: new Date().toISOString() }
+        ];
+        saveGoals();
     }
 }
 
 // Save functions
-async function saveDreams() {
-    try {
-        await fetch('/api/dreams', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                dreams,
-                total_cost: dreams.reduce((sum, d) => sum + d.cost, 0),
-                last_updated: new Date().toISOString()
-            })
-        });
-    } catch (error) {
-        console.error('Error saving dreams:', error);
-    }
+function saveDreams() {
+    localStorage.setItem(STORAGE_KEYS.dreams, JSON.stringify(dreams));
 }
 
-async function saveGoals() {
-    try {
-        await fetch('/api/goals', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                goals,
-                total_cost: goals.reduce((sum, g) => sum + g.cost, 0),
-                last_updated: new Date().toISOString()
-            })
-        });
-    } catch (error) {
-        console.error('Error saving goals:', error);
-    }
+function saveGoals() {
+    localStorage.setItem(STORAGE_KEYS.goals, JSON.stringify(goals));
 }
 
-async function saveTasks() {
-    try {
-        await fetch('/api/tasks', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                tasks,
-                last_updated: new Date().toISOString()
-            })
-        });
-    } catch (error) {
-        console.error('Error saving tasks:', error);
-    }
+function saveTasks() {
+    localStorage.setItem(STORAGE_KEYS.tasks, JSON.stringify(tasks));
 }
 
 // Format currency
@@ -203,7 +176,7 @@ function updateTaskGoalSelect() {
 }
 
 // Add dream
-async function addDream() {
+function addDream() {
     const title = document.getElementById('dreamTitle').value;
     const cost = parseInt(document.getElementById('dreamCost').value);
     const description = document.getElementById('dreamDescription').value;
@@ -221,7 +194,7 @@ async function addDream() {
         created_at: new Date().toISOString()
     });
 
-    await saveDreams();
+    saveDreams();
     renderAll();
 
     // Close modal and reset form
@@ -230,16 +203,16 @@ async function addDream() {
 }
 
 // Delete dream
-async function deleteDream(id) {
+function deleteDream(id) {
     if (confirm('Удалить эту мечту?')) {
         dreams = dreams.filter(d => d.id !== id);
-        await saveDreams();
+        saveDreams();
         renderAll();
     }
 }
 
 // Add goal
-async function addGoal() {
+function addGoal() {
     const title = document.getElementById('goalTitle').value;
     const cost = parseInt(document.getElementById('goalCost').value);
     const description = document.getElementById('goalDescription').value;
@@ -258,7 +231,7 @@ async function addGoal() {
         created_at: new Date().toISOString()
     });
 
-    await saveGoals();
+    saveGoals();
     renderAll();
 
     // Close modal and reset form
@@ -267,26 +240,26 @@ async function addGoal() {
 }
 
 // Toggle goal status
-async function toggleGoalStatus(id) {
+function toggleGoalStatus(id) {
     const goal = goals.find(g => g.id === id);
     if (goal) {
         goal.status = goal.status === 'completed' ? 'active' : 'completed';
-        await saveGoals();
+        saveGoals();
         renderAll();
     }
 }
 
 // Delete goal
-async function deleteGoal(id) {
+function deleteGoal(id) {
     if (confirm('Удалить эту цель?')) {
         goals = goals.filter(g => g.id !== id);
-        await saveGoals();
+        saveGoals();
         renderAll();
     }
 }
 
 // Add task
-async function addTask() {
+function addTask() {
     const title = document.getElementById('taskTitle').value;
     const goalId = document.getElementById('taskGoalId').value;
     const description = document.getElementById('taskDescription').value;
@@ -305,7 +278,7 @@ async function addTask() {
         created_at: new Date().toISOString()
     });
 
-    await saveTasks();
+    saveTasks();
     renderAll();
 
     // Close modal and reset form
@@ -314,20 +287,20 @@ async function addTask() {
 }
 
 // Toggle task status
-async function toggleTaskStatus(id) {
+function toggleTaskStatus(id) {
     const task = tasks.find(t => t.id === id);
     if (task) {
         task.status = task.status === 'completed' ? 'active' : 'completed';
-        await saveTasks();
+        saveTasks();
         renderAll();
     }
 }
 
 // Delete task
-async function deleteTask(id) {
+function deleteTask(id) {
     if (confirm('Удалить эту задачу?')) {
         tasks = tasks.filter(t => t.id !== id);
-        await saveTasks();
+        saveTasks();
         renderAll();
     }
 }

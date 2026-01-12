@@ -1,4 +1,68 @@
 {
-  "tasks": [],
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Найти фото Lexus LX 500d для печати",
+      "description": "Подобрать качественное фото Lexus LX 500d для замены фото Танк 500",
+      "status": "active",
+      "goalId": null,
+      "priority": "high",
+      "created_at": "2026-01-12"
+    },
+    {
+      "id": 2,
+      "title": "Подготовить 3 файла А4 для печати мечт",
+      "description": "Создать файлы с фото + суммами: Дача (1 млн), Lexus (25 млн), Квартира 125м² (25 млн)",
+      "status": "active",
+      "goalId": null,
+      "priority": "high",
+      "created_at": "2026-01-12"
+    },
+    {
+      "id": 3,
+      "title": "Подготовить карточки среднесрочных целей",
+      "description": "Сделать маленькие карточки для монитора: Дача (1 млн), Geely (1.5 млн), Отдых (1 млн)",
+      "status": "active",
+      "goalId": null,
+      "priority": "high",
+      "created_at": "2026-01-12"
+    },
+    {
+      "id": 4,
+      "title": "Распечатать все материалы",
+      "description": "Распечатать 3 листа А4 (цветные) и карточки целей",
+      "status": "active",
+      "goalId": null,
+      "priority": "high",
+      "created_at": "2026-01-12"
+    },
+    {
+      "id": 5,
+      "title": "Заламинировать распечатки",
+      "description": "Заламинировать все распечатанные материалы для долговечности",
+      "status": "active",
+      "goalId": null,
+      "priority": "high",
+      "created_at": "2026-01-12"
+    },
+    {
+      "id": 6,
+      "title": "Повесить фото мечт на стену над монитором",
+      "description": "Закрепить 3 заламинированных листа А4 на стене над монитором",
+      "status": "active",
+      "goalId": null,
+      "priority": "high",
+      "created_at": "2026-01-12"
+    },
+    {
+      "id": 7,
+      "title": "Приклеить карточки целей к монитору",
+      "description": "Приклеить карточки среднесрочных целей к нижней части монитора",
+      "status": "active",
+      "goalId": null,
+      "priority": "high",
+      "created_at": "2026-01-12"
+    }
+  ],
   "last_updated": "2026-01-12"
 }

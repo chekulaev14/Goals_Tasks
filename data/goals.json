@@ -1,0 +1,42 @@
+{
+  "goals": [
+    {
+      "id": 1,
+      "title": "Обустроить дачу",
+      "cost": 1000000,
+      "currency": "RUB",
+      "description": "Благоустройство дачи",
+      "category": "real_estate",
+      "priority": "high",
+      "status": "active",
+      "deadline": null,
+      "created_at": "2026-01-12"
+    },
+    {
+      "id": 2,
+      "title": "Выкупить Geely Preface из лизинга",
+      "cost": 1500000,
+      "currency": "RUB",
+      "description": "Полный выкуп автомобиля Geely Preface из лизинга",
+      "category": "transport",
+      "priority": "high",
+      "status": "active",
+      "deadline": null,
+      "created_at": "2026-01-12"
+    },
+    {
+      "id": 3,
+      "title": "Слетать на отдых всей семьей",
+      "cost": 1000000,
+      "currency": "RUB",
+      "description": "Семейный отпуск",
+      "category": "family",
+      "priority": "medium",
+      "status": "active",
+      "deadline": null,
+      "created_at": "2026-01-12"
+    }
+  ],
+  "total_cost": 3500000,
+  "last_updated": "2026-01-12"
+}

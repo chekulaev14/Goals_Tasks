@@ -1,0 +1,41 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Сайт по перевозкам (SEO-проект)",
+      "status": "indexing",
+      "description": "Большой сайт по перевозкам для привлечения нового трафика",
+      "metrics": {
+        "pages": 2200,
+        "cities": 48,
+        "keyword_clusters": 19
+      },
+      "stages": [
+        {
+          "name": "Создание сайта",
+          "status": "completed",
+          "date_completed": "2026-01-12"
+        },
+        {
+          "name": "Индексирование в поисковиках",
+          "status": "in_progress",
+          "started_at": "2026-01-12"
+        },
+        {
+          "name": "Получение первого трафика",
+          "status": "pending"
+        },
+        {
+          "name": "Первые лиды",
+          "status": "pending"
+        }
+      ],
+      "next_actions": [
+        "Мониторинг индексации в Яндекс и Google",
+        "Подключение Яндекс.Метрики и Google Analytics",
+        "Настройка Яндекс.Вебмастер и Google Search Console"
+      ],
+      "created_at": "2026-01-12"
+    }
+  ]
+}

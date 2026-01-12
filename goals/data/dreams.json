@@ -1,0 +1,36 @@
+{
+  "dreams": [
+    {
+      "id": 1,
+      "title": "Lexus LX 500d J310 в обвесе",
+      "cost": 25000000,
+      "currency": "RUB",
+      "description": "Премиум внедорожник Lexus LX 500d кузов J310 в обвесе",
+      "category": "transport",
+      "status": "active",
+      "created_at": "2026-01-12"
+    },
+    {
+      "id": 2,
+      "title": "Квартира в Тольятти 3-4 комнатная",
+      "cost": 12000000,
+      "currency": "RUB",
+      "description": "3-4 комнатная квартира с 2 санузлами, 120-150м²",
+      "category": "real_estate",
+      "status": "active",
+      "created_at": "2026-01-12"
+    },
+    {
+      "id": 3,
+      "title": "Дом в Ягодном у леса",
+      "cost": 50000000,
+      "currency": "RUB",
+      "description": "Построить дом по своему проекту у леса в Ягодном",
+      "category": "real_estate",
+      "status": "active",
+      "created_at": "2026-01-12"
+    }
+  ],
+  "total_cost": 87000000,
+  "last_updated": "2026-01-12"
+}

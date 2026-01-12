@@ -1,0 +1,12 @@
+{
+  "name": "goals-tasks",
+  "version": "1.0.0",
+  "description": "Система управления целями и задачами",
+  "scripts": {
+    "dev": "netlify dev"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@netlify/functions": "^2.8.2"
+  }
+}

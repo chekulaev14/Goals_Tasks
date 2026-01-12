@@ -1,0 +1,27 @@
+[build]
+  command = ""
+  publish = "."
+
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
+[[redirects]]
+  from = "/api/dreams"
+  to = "/.netlify/functions/goals-api"
+  status = 200
+
+[[redirects]]
+  from = "/api/goals"
+  to = "/.netlify/functions/goals-api"
+  status = 200
+
+[[redirects]]
+  from = "/api/tasks"
+  to = "/.netlify/functions/goals-api"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/goals/index.html"
+  status = 200

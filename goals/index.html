@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цели и Задачи</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 20px;
+            padding-bottom: 40px;
+        }
+        .section-card {
+            margin-bottom: 20px;
+        }
+        .goal-item, .task-item {
+            border-left: 4px solid #0d6efd;
+            transition: all 0.2s;
+        }
+        .goal-item:hover, .task-item:hover {
+            box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.15);
+        }
+        .dream-item {
+            border-left: 4px solid #6610f2;
+        }
+        .completed {
+            opacity: 0.6;
+            text-decoration: line-through;
+        }
+        .stats-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .cost-badge {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="row mb-4">
+            <div class="col">
+                <h1 class="display-4">🎯 Мои Цели и Задачи</h1>
+                <p class="lead text-muted">Система управления целями</p>
+            </div>
+        </div>
+
+        <!-- Stats Cards -->
+        <div class="row mb-4">
+            <div class="col-md-4">
+                <div class="card stats-card">
+                    <div class="card-body">
+                        <h5 class="card-title">Мечты</h5>
+                        <h2 id="dreamsTotal">0 ₽</h2>
+                        <p class="mb-0">Всего на сумму</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-primary text-white">
+                    <div class="card-body">
+                        <h5 class="card-title">Цели</h5>
+                        <h2 id="goalsTotal">0 ₽</h2>
+                        <p class="mb-0">Среднесрочные</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card bg-success text-white">
+                    <div class="card-body">
+                        <h5 class="card-title">Задачи</h5>
+                        <h2 id="tasksCount">0</h2>
+                        <p class="mb-0">Активных задач</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <ul class="nav nav-tabs mb-4" id="mainTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="dreams-tab" data-bs-toggle="tab" data-bs-target="#dreams" type="button">
+                    Мечты
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="goals-tab" data-bs-toggle="tab" data-bs-target="#goals" type="button">
+                    Цели
+                </button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="tasks-tab" data-bs-toggle="tab" data-bs-target="#tasks" type="button">
+                    Задачи
+                </button>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="mainTabsContent">
+            <!-- Dreams Tab -->
+            <div class="tab-pane fade show active" id="dreams" role="tabpanel">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h3>Мечты</h3>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDreamModal">
+                        + Добавить мечту
+                    </button>
+                </div>
+                <div id="dreamsList" class="row"></div>
+            </div>
+
+            <!-- Goals Tab -->
+            <div class="tab-pane fade" id="goals" role="tabpanel">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h3>Среднесрочные цели</h3>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addGoalModal">
+                        + Добавить цель
+                    </button>
+                </div>
+                <div id="goalsList" class="row"></div>
+            </div>
+
+            <!-- Tasks Tab -->
+            <div class="tab-pane fade" id="tasks" role="tabpanel">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h3>Текущие задачи</h3>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTaskModal">
+                        + Добавить задачу
+                    </button>
+                </div>
+                <div id="tasksList"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Dream Modal -->
+    <div class="modal fade" id="addDreamModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Добавить мечту</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addDreamForm">
+                        <div class="mb-3">
+                            <label class="form-label">Название</label>
+                            <input type="text" class="form-control" id="dreamTitle" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Стоимость (₽)</label>
+                            <input type="number" class="form-control" id="dreamCost" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Описание</label>
+                            <textarea class="form-control" id="dreamDescription" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                    <button type="button" class="btn btn-primary" onclick="addDream()">Добавить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Goal Modal -->
+    <div class="modal fade" id="addGoalModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Добавить цель</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addGoalForm">
+                        <div class="mb-3">
+                            <label class="form-label">Название</label>
+                            <input type="text" class="form-control" id="goalTitle" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Стоимость (₽)</label>
+                            <input type="number" class="form-control" id="goalCost" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Описание</label>
+                            <textarea class="form-control" id="goalDescription" rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                    <button type="button" class="btn btn-primary" onclick="addGoal()">Добавить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Task Modal -->
+    <div class="modal fade" id="addTaskModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Добавить задачу</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addTaskForm">
+                        <div class="mb-3">
+                            <label class="form-label">Название задачи</label>
+                            <input type="text" class="form-control" id="taskTitle" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Связана с целью (опционально)</label>
+                            <select class="form-select" id="taskGoalId">
+                                <option value="">Не привязана</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Описание</label>
+                            <textarea class="form-control" id="taskDescription" rows="2"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                    <button type="button" class="btn btn-primary" onclick="addTask()">Добавить</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

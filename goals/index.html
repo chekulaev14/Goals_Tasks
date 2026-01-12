@@ -102,133 +102,20 @@
         <div class="tab-content" id="mainTabsContent">
             <!-- Dreams Tab -->
             <div class="tab-pane fade show active" id="dreams" role="tabpanel">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h3>Мечты</h3>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addDreamModal">
-                        + Добавить мечту
-                    </button>
-                </div>
+                <h3 class="mb-3">Мечты</h3>
                 <div id="dreamsList" class="row"></div>
             </div>
 
             <!-- Goals Tab -->
             <div class="tab-pane fade" id="goals" role="tabpanel">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h3>Среднесрочные цели</h3>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addGoalModal">
-                        + Добавить цель
-                    </button>
-                </div>
+                <h3 class="mb-3">Среднесрочные цели</h3>
                 <div id="goalsList" class="row"></div>
             </div>
 
             <!-- Tasks Tab -->
             <div class="tab-pane fade" id="tasks" role="tabpanel">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h3>Текущие задачи</h3>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addTaskModal">
-                        + Добавить задачу
-                    </button>
-                </div>
+                <h3 class="mb-3">Текущие задачи</h3>
                 <div id="tasksList"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Add Dream Modal -->
-    <div class="modal fade" id="addDreamModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Добавить мечту</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="addDreamForm">
-                        <div class="mb-3">
-                            <label class="form-label">Название</label>
-                            <input type="text" class="form-control" id="dreamTitle" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Стоимость (₽)</label>
-                            <input type="number" class="form-control" id="dreamCost" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Описание</label>
-                            <textarea class="form-control" id="dreamDescription" rows="3"></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-                    <button type="button" class="btn btn-primary" onclick="addDream()">Добавить</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Add Goal Modal -->
-    <div class="modal fade" id="addGoalModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Добавить цель</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="addGoalForm">
-                        <div class="mb-3">
-                            <label class="form-label">Название</label>
-                            <input type="text" class="form-control" id="goalTitle" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Стоимость (₽)</label>
-                            <input type="number" class="form-control" id="goalCost" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Описание</label>
-                            <textarea class="form-control" id="goalDescription" rows="3"></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-                    <button type="button" class="btn btn-primary" onclick="addGoal()">Добавить</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Add Task Modal -->
-    <div class="modal fade" id="addTaskModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Добавить задачу</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="addTaskForm">
-                        <div class="mb-3">
-                            <label class="form-label">Название задачи</label>
-                            <input type="text" class="form-control" id="taskTitle" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Связана с целью (опционально)</label>
-                            <select class="form-select" id="taskGoalId">
-                                <option value="">Не привязана</option>
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">Описание</label>
-                            <textarea class="form-control" id="taskDescription" rows="2"></textarea>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
-                    <button type="button" class="btn btn-primary" onclick="addTask()">Добавить</button>
-                </div>
             </div>
         </div>
     </div>

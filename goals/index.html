@@ -36,6 +36,72 @@
             font-size: 0.9rem;
             font-weight: 600;
         }
+        /* Week Calendar */
+        .week-calendar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            overflow-x: auto;
+            padding-bottom: 5px;
+        }
+        .day-card {
+            flex: 1;
+            min-width: 100px;
+            padding: 12px 8px;
+            border-radius: 12px;
+            text-align: center;
+            background: #fff;
+            border: 2px solid #e9ecef;
+            transition: all 0.2s;
+        }
+        .day-card.today {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.2);
+        }
+        .day-card.has-project {
+            border-left-width: 4px;
+        }
+        .day-name {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: #6c757d;
+            margin-bottom: 4px;
+        }
+        .day-project {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        .day-emoji {
+            font-size: 1.2rem;
+        }
+        .project-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: #fff;
+        }
+        /* Daily Routine */
+        .daily-routine {
+            background: #e7f1ff;
+            border-radius: 8px;
+            padding: 10px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .daily-routine-label {
+            font-weight: 600;
+            color: #0d6efd;
+            font-size: 0.85rem;
+        }
+        .daily-routine-item {
+            background: #fff;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
     </style>
 </head>
 <body>
@@ -47,6 +113,12 @@
                 <p class="lead text-muted">Система управления целями</p>
             </div>
         </div>
+
+        <!-- Daily Routine -->
+        <div class="daily-routine mb-3" id="dailyRoutine"></div>
+
+        <!-- Week Calendar -->
+        <div class="week-calendar" id="weekCalendar"></div>
 
         <!-- Stats Cards -->
         <div class="row mb-4">

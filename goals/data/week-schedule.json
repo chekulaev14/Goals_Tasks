@@ -1,0 +1,67 @@
+{
+  "daily_routine": [
+    "Мониторинг Telegram-групп"
+  ],
+  "schedule": {
+    "monday": {
+      "project": "goals",
+      "title": "Целеполагание",
+      "emoji": "🎯",
+      "description": "Работа с целями и системой Goals_Tasks"
+    },
+    "tuesday": {
+      "project": "marketing",
+      "title": "Маркетинг",
+      "emoji": "📢",
+      "description": "Личный бренд, контент, VC.ru"
+    },
+    "wednesday": {
+      "project": null,
+      "title": "",
+      "emoji": "",
+      "description": ""
+    },
+    "thursday": {
+      "project": null,
+      "title": "",
+      "emoji": "",
+      "description": ""
+    },
+    "friday": {
+      "project": null,
+      "title": "",
+      "emoji": "",
+      "description": ""
+    },
+    "saturday": {
+      "project": null,
+      "title": "Выходной",
+      "emoji": "🌴",
+      "description": ""
+    },
+    "sunday": {
+      "project": null,
+      "title": "Выходной",
+      "emoji": "🌴",
+      "description": ""
+    }
+  },
+  "projects": {
+    "goals": {
+      "title": "Целеполагание",
+      "color": "#6610f2"
+    },
+    "marketing": {
+      "title": "Маркетинг",
+      "color": "#fd7e14"
+    },
+    "seo": {
+      "title": "SEO-проекты",
+      "color": "#20c997"
+    },
+    "operations": {
+      "title": "Операционка",
+      "color": "#0d6efd"
+    }
+  }
+}

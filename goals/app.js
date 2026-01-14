@@ -102,6 +102,28 @@ function renderTasks() {
         const goal = goals.find(g => g.id === task.goalId);
         const goalBadge = goal ? `<span class="badge bg-info">${goal.title}</span>` : '';
 
+        // Progress bar for tasks with progress tracking
+        let progressBar = '';
+        if (task.progress !== undefined && task.progress_total !== undefined) {
+            const percent = Math.round((task.progress / task.progress_total) * 100);
+            progressBar = `
+                <div class="mt-2">
+                    <div class="d-flex justify-content-between small mb-1">
+                        <span>Прогресс</span>
+                        <span class="fw-bold">${task.progress} / ${task.progress_total}</span>
+                    </div>
+                    <div class="progress" style="height: 8px;">
+                        <div class="progress-bar bg-success" role="progressbar"
+                             style="width: ${percent}%"
+                             aria-valuenow="${task.progress}"
+                             aria-valuemin="0"
+                             aria-valuemax="${task.progress_total}">
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
         const card = `
             <div class="card task-item mb-2 ${task.status === 'completed' ? 'completed' : ''}">
                 <div class="card-body">
@@ -109,6 +131,7 @@ function renderTasks() {
                     ${task.description ? `<p class="text-muted small mb-1">${task.description}</p>` : ''}
                     ${goalBadge}
                     ${task.status === 'completed' ? '<span class="badge bg-success ms-2">Выполнено</span>' : ''}
+                    ${progressBar}
                 </div>
             </div>
         `;

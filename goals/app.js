@@ -160,7 +160,20 @@ function renderTasks() {
     const container = document.getElementById('tasksList');
     container.innerHTML = '';
 
-    tasks.forEach(task => {
+    // Sort tasks: active first, then completed by completed_at DESC (recent first)
+    const sortedTasks = [...tasks].sort((a, b) => {
+        if (a.status !== b.status) {
+            return a.status === 'active' ? -1 : 1;
+        }
+        if (a.status === 'completed' && b.status === 'completed') {
+            const dateA = new Date(a.completed_at || a.created_at);
+            const dateB = new Date(b.completed_at || b.created_at);
+            return dateB - dateA; // DESC: newer first
+        }
+        return 0;
+    });
+
+    sortedTasks.forEach(task => {
         const goal = goals.find(g => g.id === task.goalId);
         const goalBadge = goal ? `<span class="badge bg-info">${goal.title}</span>` : '';
 

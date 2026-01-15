@@ -102,6 +102,31 @@
             border-radius: 20px;
             font-size: 0.85rem;
         }
+        /* Kwork Banner */
+        .kwork-banner {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.2s;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+        .kwork-banner:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+            color: white;
+        }
+        .kwork-icon {
+            font-size: 1.5rem;
+        }
+        .kwork-text {
+            font-size: 1.1rem;
+        }
     </style>
 </head>
 <body>
@@ -113,6 +138,12 @@
                 <p class="lead text-muted">Система управления целями</p>
             </div>
         </div>
+
+        <!-- Kwork Banner -->
+        <a href="https://kwork.ru" target="_blank" class="kwork-banner mb-3">
+            <span class="kwork-icon">👨‍💻</span>
+            <span class="kwork-text">Нужно делегировать? → KWORK</span>
+        </a>
 
         <!-- Daily Routine -->
         <div class="daily-routine mb-3" id="dailyRoutine"></div>

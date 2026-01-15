@@ -1,7 +1,5 @@
 {
-  "daily_routine": [
-    "Мониторинг Telegram-групп"
-  ],
+  "daily_routine": [],
   "schedule": {
     "monday": {
       "project": "goals",

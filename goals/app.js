@@ -2,6 +2,7 @@
 let dreams = [];
 let goals = [];
 let tasks = [];
+let ideas = [];
 let weekSchedule = null;
 
 // Initialize on page load
@@ -13,16 +14,18 @@ document.addEventListener('DOMContentLoaded', async function() {
 // Load data from JSON files
 async function loadDataFromFiles() {
     try {
-        const [dreamsData, goalsData, tasksData, scheduleData] = await Promise.all([
+        const [dreamsData, goalsData, tasksData, ideasData, scheduleData] = await Promise.all([
             fetch('/goals/data/dreams.json').then(r => r.json()),
             fetch('/goals/data/goals.json').then(r => r.json()),
             fetch('/goals/data/tasks.json').then(r => r.json()),
+            fetch('/goals/data/marketing_ideas.json').then(r => r.json()),
             fetch('/goals/data/week-schedule.json').then(r => r.json())
         ]);
 
         dreams = dreamsData.dreams || [];
         goals = goalsData.goals || [];
         tasks = tasksData.tasks || [];
+        ideas = ideasData.ideas || [];
         weekSchedule = scheduleData;
     } catch (error) {
         console.error('Error loading data:', error);
@@ -42,6 +45,7 @@ function renderAll() {
     renderDreams();
     renderGoals();
     renderTasks();
+    renderIdeas();
 }
 
 // Render daily routine
@@ -227,6 +231,26 @@ function renderTasks() {
                     ${goalBadge}
                     ${task.status === 'completed' ? '<span class="badge bg-success ms-2">Выполнено</span>' : ''}
                     ${progressBar}
+                </div>
+            </div>
+        `;
+        container.innerHTML += card;
+    });
+}
+
+// Render ideas
+function renderIdeas() {
+    const container = document.getElementById('ideasList');
+    if (!container) return;
+    container.innerHTML = '';
+
+    ideas.forEach(idea => {
+        const card = `
+            <div class="card task-item mb-2 ${idea.status === 'completed' ? 'completed' : ''}">
+                <div class="card-body">
+                    <h6 class="mb-1">${idea.title}</h6>
+                    ${idea.description ? `<p class="text-muted small mb-1">${idea.description}</p>` : ''}
+                    ${idea.status === 'completed' ? '<span class="badge bg-success">Выполнено</span>' : ''}
                 </div>
             </div>
         `;
